@@ -185,7 +185,7 @@ const Checklist = () => {
       initialOpenSections[index] = index === activePhase; // Only active phase open by default
     });
     setOpenSections(initialOpenSections);
-  }, []);
+  }, [activePhase, checklistData]);
 
   // Calculate progress percentage
   const calculateProgress = () => {
@@ -387,9 +387,11 @@ const Checklist = () => {
   };
 
   const progress = calculateProgress();
-  const progressMessage = getProgressMessage(progress);
+  // Progress message can be used later when implementing the UI
+  // const progressMessage = getProgressMessage(progress);
   const circumference = 2 * Math.PI * 47; // SVG circle circumference (r=47)
-  const dashoffset = circumference - (progress / 100) * circumference;
+  // Store dashoffset for future use in progress circle
+  // const dashoffset = circumference - (progress / 100) * circumference;
 
   // Icons for each phase
   const getPhaseIcon = (iconName) => {

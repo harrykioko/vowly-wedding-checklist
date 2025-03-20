@@ -209,14 +209,14 @@ const Checklist = () => {
   };
 
   // Get a congratulatory message based on progress
-  const getProgressMessage = (progress) => {
-    if (progress === 100) return "Congratulations! You're all set for the big day!";
-    if (progress >= 75) return "Almost there! The finish line is in sight!";
-    if (progress >= 50) return "Halfway there! Keep up the great work!";
-    if (progress >= 25) return "Great start! You're making excellent progress!";
-    if (progress > 0) return "You've started your journey! Keep going!";
-    return "";
-  };
+  // const getProgressMessage = (progress) => {
+  //   if (progress === 100) return "Congratulations! You're all set for the big day!";
+  //   if (progress >= 75) return "Almost there! The finish line is in sight!";
+  //   if (progress >= 50) return "Halfway there! Keep up the great work!";
+  //   if (progress >= 25) return "Great start! You're making excellent progress!";
+  //   if (progress > 0) return "You've started your journey! Keep going!";
+  //   return "";
+  // };
 
   // Handle task checkbox toggle
   const handleTaskToggle = (phaseIndex, taskIndex) => {
@@ -386,11 +386,9 @@ const Checklist = () => {
     setShowNameInput(true);
   };
 
-  const progress = calculateProgress();
-  // Progress message can be used later when implementing the UI
+  // const progress = calculateProgress();
   // const progressMessage = getProgressMessage(progress);
-  const circumference = 2 * Math.PI * 47; // SVG circle circumference (r=47)
-  // Store dashoffset for future use in progress circle
+  // const circumference = 2 * Math.PI * 47; // SVG circle circumference (r=47)
   // const dashoffset = circumference - (progress / 100) * circumference;
 
   // Icons for each phase

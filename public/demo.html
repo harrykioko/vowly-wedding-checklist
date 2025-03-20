@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#8a4fff" /> <!-- Vowly purple -->
+    <meta
+      name="description"
+      content="Vowly Wedding Planning Checklist - Your comprehensive tool for planning the perfect wedding"
+    />
+    <meta name="keywords" content="wedding planning, wedding checklist, vowly, wedding organizer" />
+    <meta name="author" content="Vowly" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Vowly Wedding Checklist Demo</title>
+    <style>
+      :root {
+        --vowly-primary: #8a4fff;
+        --vowly-secondary: #c4a6ff;
+        --vowly-gold: #d4af37;
+        --vowly-white: #ffffff;
+      }
+      
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+      
+      .mock-header {
+        background-color: var(--vowly-primary);
+        color: white;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .mock-header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+      
+      .mock-header nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+      
+      .mock-header nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .mock-section {
+        padding: 2rem;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+      }
+      
+      .mock-intro {
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        text-align: center;
+      }
+      
+      .mock-intro h2 {
+        color: var(--vowly-primary);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      
+      .mock-intro p {
+        line-height: 1.6;
+        color: #555;
+      }
+      
+      .checklist-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      
+      .mock-footer {
+        background-color: #333;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+      
+      .mock-footer p {
+        margin: 0.5rem 0;
+      }
+      
+      /* Target the root div for the React app */
+      #vowly-checklist-embed {
+        min-height: 650px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Mock header for a marketing site -->
+    <header class="mock-header">
+      <h1>Vowly</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">Wedding Tips</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+    
+    <!-- Mock content section -->
+    <section class="mock-section">
+      <div class="mock-intro">
+        <h2>Plan Your Perfect Wedding with Vowly's Checklist</h2>
+        <p>Stay organized and on track with our comprehensive wedding planning checklist. Customize your timeline, track your progress, and download a PDF of your plan - all for free!</p>
+      </div>
+      
+      <!-- Container for the Vowly checklist component -->
+      <div class="checklist-container">
+        <div id="vowly-checklist-embed"></div>
+      </div>
+    </section>
+    
+    <!-- Mock footer for a marketing site -->
+    <footer class="mock-footer">
+      <p>© 2025 Vowly - Your Complete Wedding Planning Solution</p>
+      <p>Privacy Policy | Terms of Service | Contact Us</p>
+    </footer>
+    
+    <script>
+      // This script emulates how the Vowly checklist would be embedded in a marketing site
+      document.addEventListener('DOMContentLoaded', function() {
+        // In a real integration, this script would mount the React component
+        const vowlyChecklist = document.getElementById('vowly-checklist-embed');
+        
+        // For demo purposes, we'll just load the main React app into this container
+        // In a real integration, this might be done with a specific embed script
+        
+        // Create a new root div that the React app will mount to
+        const rootDiv = document.createElement('div');
+        rootDiv.id = 'root'; // The id that the React app is looking for
+        vowlyChecklist.appendChild(rootDiv);
+      });
+    </script>
+  </body>
+</html>

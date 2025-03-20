@@ -28,7 +28,7 @@ A comprehensive wedding planning checklist application designed to help couples 
 
 1. Clone the repository
    ```
-   git clone https://github.com/your-username/vowly-wedding-checklist.git
+   git clone https://github.com/harrykioko/vowly-wedding-checklist.git
    ```
 
 2. Install dependencies
@@ -57,6 +57,17 @@ npm run build
 - CSS (with animations and responsive design)
 - PDF generation for downloads (jsPDF)
 - Local storage for saving progress
+
+## Marketing Resources
+
+The `marketing` directory contains resources for integrating the Vowly Wedding Checklist into marketing websites:
+
+- **Integration Examples**: Sample code showing how to embed the checklist in various ways
+- **Landing Page Example**: A demo marketing page to showcase the checklist
+- **Screenshots**: High-quality images of the application for marketing materials
+- **Integration Guide**: Documentation on how to integrate with the broader Vowly platform
+
+For more information, see the [Marketing README](./marketing/README.md).
 
 ## License
 

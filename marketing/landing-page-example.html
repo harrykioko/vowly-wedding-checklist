@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vowly Wedding Checklist - Plan Your Perfect Day</title>
+    <style>
+        :root {
+            --vowly-primary: #9d4edd;
+            --vowly-secondary: #ff8fa3;
+            --vowly-accent: #48cae4;
+            --vowly-dark: #240046;
+            --vowly-light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--vowly-primary), var(--vowly-dark));
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--vowly-secondary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: var(--vowly-dark);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .feature h3 {
+            color: var(--vowly-primary);
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--vowly-accent);
+        }
+        
+        .demo-section {
+            background-color: var(--vowly-light);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        iframe {
+            border: none;
+            width: 100%;
+            height: 600px;
+        }
+        
+        .testimonials {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f5f7fa, #e4ecfb);
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--vowly-primary);
+        }
+        
+        footer {
+            background-color: var(--vowly-dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .features h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Vowly Wedding Checklist</h1>
+        <p class="tagline">Plan your perfect wedding with our comprehensive, step-by-step wedding checklist that guides you through every phase of your planning journey.</p>
+        <a href="#demo" class="cta-button">Try Our Checklist</a>
+    </header>
+    
+    <section class="features">
+        <h2>Why Choose Vowly?</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3>Journey-Based Planning</h3>
+                <p>Our unique timeline approach breaks down wedding planning into 6 manageable phases, from "Big Picture Planning" to "Showtime!"</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Visual Progress Tracking</h3>
+                <p>Watch your wedding planning progress with beautiful visual indicators that keep you motivated and on track.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Expert Wedding Tips</h3>
+                <p>Get professional advice and insider tips at every step of your planning journey from experienced wedding planners.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Personalized Experience</h3>
+                <p>Customize your checklist with your names, wedding date, and preferences for a truly personalized planning experience.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <h3>Easy Sharing</h3>
+                <p>Share your checklist with your partner, wedding party, or vendors with simple sharing options.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <h3>Download as PDF</h3>
+                <p>Save your wedding checklist as a PDF to keep track offline or print for physical planning sessions.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="demo" class="demo-section">
+        <h2>Try Our Wedding Checklist</h2>
+        <div class="demo-container">
+            <div id="vowly-checklist-container"></div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <h2>What Couples Say About Us</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p>"Vowly's wedding checklist made planning our wedding so much easier. The timeline view kept us on track and the expert tips were invaluable!"</p>
+                <div class="testimonial-author">Sophia & James, married May 2024</div>
+            </div>
+            <div class="testimonial">
+                <p>"I love how the checklist is broken down into phases. It made the process less overwhelming and more manageable."</p>
+                <div class="testimonial-author">Taylor & Jordan, married September 2024</div>
+            </div>
+            <div class="testimonial">
+                <p>"The ability to track our progress visually was so motivating. We could see how far we'd come and what was left to do at a glance."</p>
+                <div class="testimonial-author">Emma & David, married July 2024</div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Vowly Wedding Planning. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+    
+    <script src="integration-examples.js"></script>
+    <script>
+        // Initialize the checklist iframe when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initVowlyChecklist();
+        });
+    </script>
+</body>
+</html>

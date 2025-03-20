@@ -1,0 +1,58 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      
+    - name: Build standalone version
+      run: npm run build-standalone
+      
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+    - name: Create release package
+      run: |
+        zip -r vowly-wedding-checklist-${{ steps.get_version.outputs.VERSION }}.zip build/
+        zip -r vowly-wedding-checklist-standalone-${{ steps.get_version.outputs.VERSION }}.zip dist/
+      
+    - name: Create GitHub Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          vowly-wedding-checklist-${{ steps.get_version.outputs.VERSION }}.zip
+          vowly-wedding-checklist-standalone-${{ steps.get_version.outputs.VERSION }}.zip
+        name: Release ${{ steps.get_version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+        body: |
+          # Vowly Wedding Checklist ${{ steps.get_version.outputs.VERSION }}
+          
+          ## Release Notes
+          
+          _Please add release notes here_
+          
+          ## Installation
+          
+          Download and extract the ZIP file. See the README for detailed instructions.

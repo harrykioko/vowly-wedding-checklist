@@ -123,7 +123,7 @@ const embedCode = `<!DOCTYPE html>
   <h2>Standard Iframe Integration</h2>
   <p>Copy and paste this code into your website to embed the Vowly Wedding Checklist:</p>
   <pre>&lt;iframe 
-  src="${window.location.origin}/index.html" 
+  src="./index.html" 
   style="width: 100%; border: none; min-height: 700px;" 
   id="vowly-checklist-frame"
   title="Vowly Wedding Checklist"
@@ -147,7 +147,7 @@ const embedCode = `<!DOCTYPE html>
 &lt;div id="vowly-container"&gt;&lt;/div&gt;
 
 &lt;!-- 2. Include the Vowly script --&gt;
-&lt;script src="${window.location.origin}/static/js/main.js"&gt;&lt;/script&gt;
+&lt;script src="./static/js/main.js"&gt;&lt;/script&gt;
 
 &lt;!-- 3. Initialize the widget --&gt;
 &lt;script&gt;

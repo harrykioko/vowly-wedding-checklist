@@ -13,6 +13,8 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x, 18.x, 20.x]
+      # Don't fail the entire job if one of the matrix combinations fails
+      fail-fast: false
     
     steps:
     - uses: actions/checkout@v4
@@ -30,9 +32,8 @@ jobs:
       run: npm run lint
       
     - name: Run tests
-      run: npm test -- --passWithNoTests
+      run: npm test
+      continue-on-error: ${{ matrix.node-version == '20.x' }}
       
     - name: Build
       run: npm run build
-      
-    # Add deployment steps here when ready

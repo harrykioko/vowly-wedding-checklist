@@ -1,0 +1,80 @@
+/* Standalone widget styles - used for embedded version */
+
+/* Reset styles to prevent conflicts with parent site */
+.vowly-widget-container {
+  all: initial;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  box-sizing: border-box;
+  color: #333;
+}
+
+.vowly-widget-container * {
+  box-sizing: border-box;
+}
+
+/* Ensure the widget is responsive */
+.vowly-widget-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Override any parent styles that might affect our widget */
+.vowly-widget-container h1,
+.vowly-widget-container h2,
+.vowly-widget-container h3,
+.vowly-widget-container p,
+.vowly-widget-container input,
+.vowly-widget-container button {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  line-height: normal;
+}
+
+/* Apply CSS variable fallbacks for older browsers */
+.vowly-widget-container {
+  /* Primary brand colors with fallbacks */
+  --vowly-primary: #ff6b6b;
+  --vowly-secondary: #4ecdc4;
+  --vowly-accent: #ffe66d;
+  --vowly-text: #2b2b2b;
+  --vowly-background: #ffffff;
+  
+  /* Fallbacks for browsers that don't support CSS variables */
+  background-color: #ffffff;
+  background-color: var(--vowly-background, #ffffff);
+  color: #2b2b2b;
+  color: var(--vowly-text, #2b2b2b);
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  .vowly-widget-container {
+    padding: 10px;
+  }
+}
+
+/* Prevent conflicts with parent site forms */
+.vowly-widget-container form {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure buttons have consistent styling */
+.vowly-widget-container button {
+  cursor: pointer;
+  background-color: #ff6b6b;
+  background-color: var(--vowly-primary, #ff6b6b);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.vowly-widget-container button:hover {
+  background-color: #ff5252;
+  background-color: var(--vowly-primary-dark, #ff5252);
+}

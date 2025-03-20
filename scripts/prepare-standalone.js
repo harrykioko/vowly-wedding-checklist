@@ -51,186 +51,184 @@ const iframeScript = `
   const observer = new MutationObserver(updateParentHeight);
   
   // Start observing when DOM is ready
-  document.addEventListener('DOMContentLoaded', () => {
-    observer.observe(document.body, { 
-      childList: true, 
+  document.addEventListener('DOMContentLoaded', function() {
+    observer.observe(document.body, {
+      childList: true,
       subtree: true,
-      attributes: true 
+      attributes: true,
+      characterData: true
     });
+    
+    // Initial height update
     updateParentHeight();
   });
-</script>`;
+</script>
+`;
 
-// Insert the script before the closing </head> tag
-indexHtml = indexHtml.replace('</head>', iframeScript + '</head>');
+// Insert before closing head tag
+indexHtml = indexHtml.replace('</head>', `${iframeScript}</head>`);
 
-// Add stylesheet for widget mode
-const widgetCss = `
-<style>
-  /* Styles for when used as a widget */
-  .vowly-widget {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  .vowly-widget body {
-    margin: 0;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-</style>`;
+// Add wrapper div for isolation
+indexHtml = indexHtml.replace(
+  '<div id="root"></div>',
+  '<div id="root" class="vowly-widget-container"></div>'
+);
 
-// Insert the CSS before the closing </head> tag
-indexHtml = indexHtml.replace('</head>', widgetCss + '</head>');
-
-// Write the modified HTML back to disk
+// Write modified HTML back to file
 fs.writeFileSync(indexHtmlPath, indexHtml);
 
-// Create a sample embed code file
+// Create embed code example
+console.log('Creating embed code example...');
 const embedCodePath = path.join(distDir, 'embed-code.html');
 const embedCode = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vowly Wedding Checklist - Embed Example</title>
+  <title>Vowly Wedding Checklist - Embed Code Example</title>
   <style>
-    .container {
-      max-width: 800px;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
       margin: 0 auto;
       padding: 20px;
-      font-family: sans-serif;
     }
-    .code-block {
+    pre {
       background-color: #f5f5f5;
-      border: 1px solid #ddd;
-      border-radius: 4px;
       padding: 15px;
-      margin: 20px 0;
-      overflow-x: auto;
+      border-radius: 5px;
+      overflow: auto;
     }
-    h2 {
-      margin-top: 40px;
+    .example-container {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+    h1, h2 {
+      color: #ff6b6b;
+    }
+    .note {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffeeba;
+      padding: 10px 15px;
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Vowly Wedding Checklist - Embedding Guide</h1>
-    <p>
-      This file provides examples of how to embed the Vowly Wedding Checklist into your website.
-    </p>
-    
-    <h2>Basic iFrame Embedding</h2>
-    <div class="code-block">
-      <pre><code>&lt;iframe 
-  src="https://your-website.com/path/to/standalone/index.html"
-  width="100%"
-  height="800px"
-  frameborder="0"
-  title="Vowly Wedding Checklist"
-&gt;&lt;/iframe&gt;</code></pre>
-    </div>
-    
-    <h2>Responsive iFrame</h2>
-    <p>
-      For a responsive iframe that adjusts its height based on content:
-    </p>
-    <div class="code-block">
-      <pre><code>&lt;iframe 
-  id="vowly-iframe"
-  src="https://your-website.com/path/to/standalone/index.html"
-  width="100%"
-  height="800px"
-  frameborder="0"
-  scrolling="no"
-  style="overflow: hidden;"
+  <h1>Vowly Wedding Checklist - Integration Guide</h1>
+  
+  <h2>Standard Iframe Integration</h2>
+  <p>Copy and paste this code into your website to embed the Vowly Wedding Checklist:</p>
+  <pre>&lt;iframe 
+  src="${window.location.origin}/index.html" 
+  style="width: 100%; border: none; min-height: 700px;" 
+  id="vowly-checklist-frame"
   title="Vowly Wedding Checklist"
 &gt;&lt;/iframe&gt;
 
 &lt;script&gt;
+  // Handle height adjustments from the iframe
   window.addEventListener('message', function(event) {
-    // Verify the origin - replace with your actual domain
-    if (event.origin !== 'https://your-website.com') return;
-    
-    if (event.data.type === 'vowly-height') {
-      const iframe = document.getElementById('vowly-iframe');
+    if (event.data && event.data.type === 'vowly-height') {
+      const iframe = document.getElementById('vowly-checklist-frame');
       if (iframe) {
-        iframe.height = event.data.height + 20 + 'px';
+        iframe.style.height = (event.data.height + 20) + 'px';
       }
     }
   });
-&lt;/script&gt;</code></pre>
-    </div>
-    
-    <h2>Pop-up Modal Implementation</h2>
-    <p>
-      To display the checklist in a pop-up modal:
-    </p>
-    <div class="code-block">
-      <pre><code>&lt;button id="open-vowly"&gt;Open Wedding Checklist&lt;/button&gt;
+&lt;/script&gt;</pre>
 
-&lt;div id="vowly-modal" style="display: none; position: fixed; z-index: 1000; 
-  left: 0; top: 0; width: 100%; height: 100%; overflow: auto; 
-  background-color: rgba(0,0,0,0.4);"&gt;
-  &lt;div style="background-color: #fff; margin: 5% auto; padding: 20px; 
-    border: 1px solid #888; width: 90%; max-width: 1000px; position: relative;"&gt;
-    &lt;span id="close-vowly" style="color: #aaa; float: right; font-size: 28px; 
-      font-weight: bold; cursor: pointer;"&gt;&times;&lt;/span&gt;
-    &lt;iframe src="https://your-website.com/path/to/standalone/index.html" 
-      width="100%" height="80vh" frameborder="0" title="Vowly Wedding Checklist"&gt;&lt;/iframe&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+  <h2>JavaScript API Integration</h2>
+  <p>For more control, you can use our JavaScript API:</p>
+  <pre>&lt;!-- 1. Add container where you want the checklist to appear --&gt;
+&lt;div id="vowly-container"&gt;&lt;/div&gt;
 
+&lt;!-- 2. Include the Vowly script --&gt;
+&lt;script src="${window.location.origin}/static/js/main.js"&gt;&lt;/script&gt;
+
+&lt;!-- 3. Initialize the widget --&gt;
 &lt;script&gt;
-  document.getElementById('open-vowly').onclick = function() {
-    document.getElementById('vowly-modal').style.display = 'block';
-  }
-  
-  document.getElementById('close-vowly').onclick = function() {
-    document.getElementById('vowly-modal').style.display = 'none';
-  }
-  
-  window.onclick = function(event) {
-    if (event.target === document.getElementById('vowly-modal')) {
-      document.getElementById('vowly-modal').style.display = 'none';
-    }
-  }
-&lt;/script&gt;</code></pre>
-    </div>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the widget
+    window.VowlyWidget.init('vowly-container');
+  });
+&lt;/script&gt;</pre>
+
+  <div class="note">
+    <strong>Note:</strong> For production use, we recommend downloading the files and hosting them on your own server for better reliability.
   </div>
+
+  <h2>Integration Example</h2>
+  <div class="example-container">
+    <iframe 
+      src="./index.html" 
+      style="width: 100%; border: none; min-height: 700px;" 
+      id="vowly-example-frame"
+      title="Vowly Wedding Checklist Example"
+    ></iframe>
+
+    <script>
+      // Handle height adjustments from the iframe
+      window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'vowly-height') {
+          const iframe = document.getElementById('vowly-example-frame');
+          if (iframe) {
+            iframe.style.height = (event.data.height + 20) + 'px';
+          }
+        }
+      });
+    </script>
+  </div>
+
+  <h2>CSS Customization</h2>
+  <p>You can customize the appearance of the widget by overriding our CSS variables:</p>
+  <pre>&lt;style&gt;
+  #vowly-container {
+    --vowly-primary: #ff6b6b;    /* Primary color */
+    --vowly-secondary: #4ecdc4;  /* Secondary color */
+    --vowly-accent: #ffe66d;     /* Accent color */
+    --vowly-text: #2b2b2b;       /* Text color */
+    --vowly-background: #ffffff; /* Background color */
+  }
+&lt;/style&gt;</pre>
 </body>
 </html>`;
 
 fs.writeFileSync(embedCodePath, embedCode);
 
+// Create a minified version of the build for faster loading
+console.log('Creating optimized version for embedding...');
+// TODO: Add minification steps for better performance
+
 console.log('Standalone version created successfully!');
-console.log(`Files are available in the "${distDir}" directory.`);
-console.log('Embed examples are available in embed-code.html');
 
-/**
- * Recursively copy files from source to destination
- */
-function copyFolderSync(src, dest) {
-  // Create destination folder if it doesn't exist
-  if (!fs.existsSync(dest)) {
-    fs.mkdirSync(dest);
+// Utility function to copy folders recursively
+function copyFolderSync(source, target) {
+  // Create target folder if it doesn't exist
+  if (!fs.existsSync(target)) {
+    fs.mkdirSync(target);
   }
 
-  const files = fs.readdirSync(src);
-  
-  for (const file of files) {
-    const srcPath = path.join(src, file);
-    const destPath = path.join(dest, file);
+  // Read all files in source folder
+  const files = fs.readdirSync(source);
+
+  // Copy each file/folder
+  files.forEach(file => {
+    const sourcePath = path.join(source, file);
+    const targetPath = path.join(target, file);
     
-    const stat = fs.statSync(srcPath);
+    // Get file stats
+    const stats = fs.statSync(sourcePath);
     
-    if (stat.isDirectory()) {
-      // If directory, recursively copy
-      copyFolderSync(srcPath, destPath);
+    if (stats.isDirectory()) {
+      // Recursively copy subdirectories
+      copyFolderSync(sourcePath, targetPath);
     } else {
-      // If file, copy it
-      fs.copyFileSync(srcPath, destPath);
+      // Copy file
+      fs.copyFileSync(sourcePath, targetPath);
     }
-  }
+  });
 }
